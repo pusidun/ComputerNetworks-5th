@@ -1,21 +1,24 @@
 ## Exercise 1.1
 
-ÕâÀïÍøÖ·(ftp.rfc.editor.org)Ê§Ğ§£¬ÏÖÔÚÎªftp://ftp.rfc-editor.org/
+è¿™é‡Œç½‘å€(ftp.rfc.editor.org)å¤±æ•ˆï¼Œç°åœ¨ä¸ºftp://ftp.rfc-editor.org/
 
 
 ## Exercise 1.3
 
 (a) (2*50ms)+(1000KB/1.5Mbps)+50ms/2=5.46s
 
-(b) aÖĞµÄ½á¹û¼ÓÉÏ1000KB/1KB¸ö·Ö×é·¢ËÍµÄÊ±¼ä£¬¼´¼ÓÉÏ1000*50ms,Îª55.46s
+(b) aä¸­çš„ç»“æœåŠ ä¸Š1000KB/1KBä¸ªåˆ†ç»„å‘é€çš„æ—¶é—´ï¼Œå³åŠ ä¸Š1000*50ms,ä¸º55.46s
 
 (c) (1000/20)*50ms=2.5s
 
-(d) 1+2+4+8+...+2^(n-1)+... >=1000 ¼¸ºÎ¼¶Êı£¬sum=2^n-1, n=log(1001)ÏòÉÏÈ¡Õû£¬n=10
+(d) 1+2+4+8+...+2^(n-1)+... >=1000 å‡ ä½•çº§æ•°ï¼Œsum=2^n-1, n=log(1001)å‘ä¸Šå–æ•´ï¼Œn=10
 
 
 ## Exercise 1.5
-Propagration=Distance/Speed=4000m/(2*10^8)s=2*10^(-5)s
-ÓÉBandwidth=Size/Transmit£¬Transmit=PropagationµÃ
-a) Size=100ByteÊ±£¬Bandwidth=100Byte/2*10^(-5)s=5*10^6Byte/s
-b) Size=512ByteÊ±£¬Bandwidth=512Byte/2*10^(-5)s=25.6*10^6Byte/s
+Propagration=Distance/Speed=4000m/(210^8)s=210^(-5)s 
+
+ç”±Bandwidth=Size/Transmitï¼ŒTransmit=Propagationå¾— 
+
+a) Size=100Byteæ—¶ï¼ŒBandwidth=100Byte/210^(-5)s=510^6Byte/s 
+
+b) Size=512Byteæ—¶ï¼ŒBandwidth=512Byte/210^(-5)s=25.610^6Byte/s
