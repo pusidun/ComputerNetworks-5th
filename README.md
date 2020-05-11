@@ -5,12 +5,14 @@
 
 ### Contents
 
-- APUE
+- APUE [UNIX环境高级编程](https://book.douban.com/subject/1788421/)
 
-- CSAPP
+- CSAPP [深入理解计算机系统](https://book.douban.com/subject/26912767/)
 
-- NetworkTDA
+- NetworkTDA [计算机网络：自顶向下方法](https://book.douban.com/subject/26176870/)
 
-- LinuxServer <<Linux高性能服务器编程>>
+- AlgoNote [算法笔记]()
 
-- AlgoNote <<算法笔记>>
+- Dscpp [数据结构与算法-面向对象的C++设计模式](https://book.douban.com/subject/1237186/)
+
+- LinuxServer [Linux高性能服务器编程](https://book.douban.com/subject/24722611/)
