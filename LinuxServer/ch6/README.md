@@ -17,6 +17,8 @@ int dup2(int file_descriptor_one, int file_descriptor_two);
 
 ### sendfile零拷贝
 
+kafka消费端用此函数实现高效读
+
 ```
 #include<sys/sendfile.h>
 ssize_t sendfile(int out_fd, int in_fd, off_t* offset, size_t count);
