@@ -11,7 +11,7 @@
 
 - NetworkTDA [计算机网络：自顶向下方法](https://book.douban.com/subject/26176870/)
 
-- AlgoNote [算法笔记]()
+- AlgoNote [算法笔记](https://book.douban.com/subject/26827295/)
 
 - Dscpp [数据结构与算法-面向对象的C++设计模式](https://book.douban.com/subject/1237186/)
 
