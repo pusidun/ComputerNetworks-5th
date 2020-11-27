@@ -1,10 +1,14 @@
-### pip
+### pipe
+
 ```
 #include<unistd.h>
-int pip(int fd[2]);
-``
+int pipe(int fd[2]);
+```
+
+成功返回0，失败返回-1并设置errno。0读1写
 
 ### dup dup2
+
 ```
 #include<unistd.h>
 int dup(int file_descriptor);

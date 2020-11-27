@@ -8,6 +8,16 @@ uint32_t ntohl(uint32_t netlong);
 uint16_t ntohs(uint16_t netshort);
 ```
 
+### 通用socket地址
+
+```
+#include<bits/socket.h>
+struct sockaddr{
+    sa_family_t sa_family;
+    char sa_data[14];
+}
+```
+
 ### 专用socket地址
 ```
 #include<sys/types.h>
@@ -53,7 +63,7 @@ struct sockaddr_un {
 
 in_addr_t inet_addr(const char *cp);  // failed ret: INADDR_NONE
 int inet_aton(const char *cp, struct in_addr *inp);
-char *inet_ntoa(struct in_addr in);  // 不可重入
+char *inet_ntoa(struct in_addr in);  // 不可重入，内部有静态变量存储转化结果
 
 #include <arpa/inet.h>
 int inet_pton(int af, const char *src, void *dst);
@@ -129,6 +139,14 @@ ssize_t recvmsg(int sockfd, struct msghdr *msg, int flags);
 ssize_t sendmsg(int sockfd, const struct msghdr *msg, int flags);
 ```
 
+### 带外标记
+
+```
+#include<sys/socket.h>
+int sockatmark(int sockfd);
+```
+返回1，就可以利用带MSG_OOB标志的recv调用来接受带外数据
+
 ### 地址信息函数
 ```
 #include <sys/socket.h>
@@ -138,19 +156,63 @@ int getpeername(int sockfd, struct sockaddr *addr, socklen_t *addrlen);  // 对�
 
 ### socket选项
 
-getsockopt setsockopt
+```
+#include<sys/socket.h>
+int getsockopt(int sockfd, int level, int option_name, void* option_value,
+                socklen_t* restrict option_len);
+int setsockopt(int sockfd, int level, int option_name, const void* option_value,
+                socklen_t option_len);
+```
+
+成功时返回0，失败时返回-1并设置errno
 
 #### so_reuseaddr
 
+强制使用处于TIME_WAIT的TCP socket
+
+```
+int sock = sock(PF_INET, SOCK_STREAM, 0);
+assert(sock >= 0);
+int reuse = 1;
+setsockopt(sock, SOL_SOCKET, SO_REUSEADDR, &reuse, sizeof(reuse));
+
+struct sockaddr_in address;
+bzero(&address);
+address.sin_family = AF_INET;
+inet_pton(AF_INET, ip, &address.sin_addr);
+address.port = htons(port);
+int ret = bind(sock, (struct sockaddr*)address, sizeof(address));
+```
+
 #### so_rcvbuf so_sndbuf
+
+设置发送接受缓冲区。接受缓冲区最小值256字节，发送缓冲区最小值2048字节。
+
+```
+setsockopt(sock, SOL_SOCKET, SO_RCVBUF /*SO_SNDBUF*/, &recvbuff, sizeof(recvbuf));
+getsockopt(sock, SOL_SOCKET, SO_RCVBUF /*SO_SNDBUF*/, &recvbuff, (socklen_t*)&len);
+```
 
 #### so_rcvlowat so_sndlowat
 
+接受和发送缓冲区低水位标记，默认都是1字节
+
+当接受缓冲区可读数据大于低水位标记，IO复用通知应用程序可读；当发送缓冲区空闲空间大于低水位标志，IO复用通知应用程序可写
+
 #### so_linger
+
+```
+#include<sys/socket.h>
+struct linger{
+    int l_onoff;
+    int l_linger;
+}
+```
 
 ### 网络信息API
 
 #### gethostbyname gethostbyaddr
+
 ```
 #include <netdb.h>
 struct hostent *gethostbyname(const char *name);
@@ -168,6 +230,12 @@ struct hostent {
 ```
 
 #### getservbyname getservbyport
+
+```
+include<netdb.h>
+struct servent* getservbyname(const char* name, const char* proto);
+struct servent* getservbyport(int port, const char* proto);
+```
 
 #### getaddrinfo
 
